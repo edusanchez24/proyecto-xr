@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crq6ag42ogido" path="res://scripts/xr_main.gd" id="1_1fyq6"]
 [ext_resource type="PackedScene" uid="uid://cahmjuosb117k" path="res://scenes/grabbable_cube.tscn" id="2_3carf"]
+[ext_resource type="Script" uid="uid://gtcq8cujq7bv" path="res://scripts/xr_hand.gd" id="2_qwytd"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ojbw0"]
 size = Vector3(10, 0.1, 10)
@@ -17,14 +18,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D" unique_id=635253682]
 
-[node name="LeftController" type="XRController3D" parent="XROrigin3D" unique_id=1074629117]
+[node name="LeftController" type="XRController3D" parent="XROrigin3D" unique_id=1074629117 node_paths=PackedStringArray("raycast")]
 tracker = &"/user/hand_tracker/left"
+script = ExtResource("2_qwytd")
+grab_action = &"grab_left"
+raycast = NodePath("RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="XROrigin3D/LeftController" unique_id=1194952738]
 target_position = Vector3(0, 0, -3)
 
-[node name="RightController" type="XRController3D" parent="XROrigin3D" unique_id=2060222320]
+[node name="RightController" type="XRController3D" parent="XROrigin3D" unique_id=2060222320 node_paths=PackedStringArray("raycast")]
 tracker = &"/user/hand_tracker/right"
+script = ExtResource("2_qwytd")
+grab_action = &"grab_right"
+raycast = NodePath("RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="XROrigin3D/RightController" unique_id=213230647]
 target_position = Vector3(0, 0, -3)
